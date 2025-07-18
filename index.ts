@@ -1,4 +1,4 @@
-import { PORTS_CONFIG } from './config';
+import { EEZ_AREAS_CONFIG, PORTS_CONFIG } from './config';
 import { getScreenshot } from './lib';
 
 const chunk = <T>(array: T[], size: number): T[][] => {
@@ -26,8 +26,26 @@ const getPortsScreenshots = async () => {
   }
 };
 
+const getEEZScreenshots = async () => {
+  const { url, ids } = EEZ_AREAS_CONFIG;
+  const chunks = chunk(ids, 10);
+
+  for (const chunk of chunks) {
+    await Promise.all(
+      chunk.map((id) =>
+        getScreenshot({
+          id: id.toString(),
+          url: url.replace('{{id}}', id.toString()),
+          path: 'images/eezs',
+        })
+      )
+    );
+  }
+};
+
 const getAllScreenshots = async () => {
-  await getPortsScreenshots();
+  getPortsScreenshots();
+  getEEZScreenshots();
 };
 
 getAllScreenshots();

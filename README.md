@@ -15,9 +15,9 @@ npm install
 
 Before running the tool, review and customize the settings in `/config.ts`:
 
-- **URL Template**: The base URL for the GFW map with placeholders for port IDs
+- **URL Template**: The base URL for the GFW map with placeholders for entity IDs
 - **Map Parameters**: Configure map layers, time ranges, and visualization settings
-- **Port Data**: The tool uses port data from `/data/ports.json` which contains thousands of global ports
+- **Data**: The tool uses data from `/data/[source].json`
 
 ## Usage
 
