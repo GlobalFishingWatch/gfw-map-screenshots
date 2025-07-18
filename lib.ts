@@ -7,12 +7,31 @@ type Options = {
   width?: number;
   height?: number;
   path?: string;
+  replace?: boolean;
 };
 
 const TIMEBAR_HEIGHT = 96;
 
 export const getScreenshot = async (options = {} as Options) => {
-  const { url, id, width = 500, height = 400, path = 'images' } = options;
+  const {
+    url,
+    id,
+    width = 500,
+    height = 400,
+    path = 'images',
+    replace = false,
+  } = options;
+
+  const filePath = `${path}/${id}@2x.webp`;
+  if (!replace) {
+    // Check if the screenshot already exists
+    try {
+      await fs.access(filePath);
+      return;
+    } catch {
+      // File doesn't exist, proceed with screenshot generation
+    }
+  }
 
   const browser = await puppeteer.launch();
 
@@ -52,10 +71,11 @@ export const getScreenshot = async (options = {} as Options) => {
       } catch {
         await fs.mkdir(path, { recursive: true });
       }
-      await fs.writeFile(`${path}/${id}@2x.webp`, base64Data, 'base64');
+      await fs.writeFile(filePath, base64Data, 'base64');
+      console.log(`Screenshot saved for ${filePath}`);
     }
   } catch (e) {
-    console.log(e);
+    console.log(`Error generating screenshot for ${id}:`, e);
   } finally {
     await browser.close();
   }
