@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "nodenext",
     "lib": ["ES2020", "DOM"],
     "outDir": "./dist",
     "rootDir": "./",
@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,

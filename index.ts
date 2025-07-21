@@ -1,20 +1,23 @@
-import { EEZ_AREAS_CONFIG, PORTS_CONFIG } from './config'
-import { getScreenshotsInChunk } from './lib'
-import { asyncPool, chunk, renderBar } from './utils'
+import { EEZ_AREAS_CONFIG, PORTS_CONFIG } from './config.js'
+import type { ScreenshotConfig } from './config.ts'
+import { getScreenshotsInChunk } from './lib.js'
+import { asyncPool, chunk, renderBar } from './utils.js'
 
-const CHUNK_SIZE = 10
 const CONCURRENCY = 5
 
-const getScreenshots = async (data: { url: string; ids: (string | number)[]; name: string }) => {
+const getScreenshots = async (data: ScreenshotConfig) => {
   const { url, ids, name } = data
-  const chunks = chunk(ids, CHUNK_SIZE)
+  const chunks = chunk(ids, Math.ceil(ids.length / CONCURRENCY))
   const total = ids.length
   let completed = 0
+  process.stdout.write(`[${name}] Starting... \n`)
 
   const handleProgress = () => {
     completed++
     process.stdout.write(`\r[${name}] ${renderBar(completed, total)}`)
-    if (completed === total) process.stdout.write('\n')
+    if (completed === total) {
+      process.stdout.write('\n')
+    }
   }
 
   await asyncPool(CONCURRENCY, chunks, async (chunkIds) => {
@@ -22,8 +25,9 @@ const getScreenshots = async (data: { url: string; ids: (string | number)[]; nam
       id: String(id),
       url: url.replace('{{id}}', String(id)),
       path: `images/${name}`,
+      // replace: true
     }))
-    await getScreenshotsInChunk(optionsArray, 500, 400, handleProgress)
+    await getScreenshotsInChunk(optionsArray, handleProgress)
   })
 }
 

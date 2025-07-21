@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node index.ts",
+    "dev": "yarn build && yarn start",
+    "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -21,7 +22,6 @@
     "@types/node": "^24.0.14",
     "eslint": "^9.31.0",
     "prettier": "^3.6.2",
-    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }
