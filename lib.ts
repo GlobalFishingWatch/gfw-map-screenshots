@@ -72,7 +72,7 @@ export const getScreenshot = async (options = {} as Options) => {
         await fs.mkdir(path, { recursive: true });
       }
       await fs.writeFile(filePath, base64Data, 'base64');
-      console.log(`Screenshot saved for ${filePath}`);
+      // console.log(`Screenshot saved for ${filePath}`);
     }
   } catch (e) {
     console.log(`Error generating screenshot for ${id}:`, e);
