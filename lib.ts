@@ -11,6 +11,9 @@ type Options = {
 };
 
 const TIMEBAR_HEIGHT = 96;
+const DEBOUNCED_URL_TIME = 1000;
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const getScreenshot = async (options = {} as Options) => {
   const {
@@ -56,6 +59,7 @@ export const getScreenshot = async (options = {} as Options) => {
     });
 
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 90000 });
+    await sleep(DEBOUNCED_URL_TIME + 100);
 
     const selector = 'canvas#map';
     await page.waitForSelector(selector);
