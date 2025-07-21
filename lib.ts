@@ -33,15 +33,16 @@ export const getScreenshot = async (options = {} as Options) => {
     }
   }
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    // headless: false,
+    defaultViewport: {
+      width: width * 2,
+      height: height + TIMEBAR_HEIGHT,
+    },
+  });
 
   try {
     const page = await browser.newPage();
-
-    await page.setViewport({
-      width: width * 2,
-      height: height + TIMEBAR_HEIGHT,
-    });
 
     // Set localStorage values before navigating to the page
     await page.evaluateOnNewDocument(() => {

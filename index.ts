@@ -1,6 +1,8 @@
 import { EEZ_AREAS_CONFIG, PORTS_CONFIG } from './config';
 import { getScreenshot } from './lib';
 
+const CHUNK_SIZE = 10;
+
 const chunk = <T>(array: T[], size: number): T[][] => {
   const chunks: T[][] = [];
   for (let i = 0; i < array.length; i += size) {
@@ -11,7 +13,7 @@ const chunk = <T>(array: T[], size: number): T[][] => {
 
 const getPortsScreenshots = async () => {
   const { url, ids } = PORTS_CONFIG;
-  const chunks = chunk(ids, 10);
+  const chunks = chunk(ids, CHUNK_SIZE);
   const total = ids.length;
   let completed = 0;
 
@@ -33,7 +35,7 @@ const getPortsScreenshots = async () => {
 
 const getEEZScreenshots = async () => {
   const { url, ids } = EEZ_AREAS_CONFIG;
-  const chunks = chunk(ids, 10);
+  const chunks = chunk(ids, CHUNK_SIZE);
   const total = ids.length;
   let completed = 0;
 
@@ -54,8 +56,8 @@ const getEEZScreenshots = async () => {
 };
 
 const getAllScreenshots = async () => {
-  getPortsScreenshots();
-  // getEEZScreenshots();
+  // getPortsScreenshots();
+  getEEZScreenshots();
 };
 
 getAllScreenshots();
