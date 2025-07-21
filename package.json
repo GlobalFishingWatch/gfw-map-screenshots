@@ -4,7 +4,7 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -13,12 +13,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@globalfishingwatch/linting": "^3.1.4",
     "@globalfishingwatch/ocean-areas": "^2.0.3",
-    "p-limit": "^6.2.0",
     "puppeteer": "^24.14.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.14",
+    "eslint": "^9.31.0",
+    "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
