@@ -1,4 +1,4 @@
-import { EEZ_AREAS_CONFIG, PORTS_CONFIG } from './config.js'
+import { EEZ_AREAS_CONFIG, INFRASTRUCTURE_AREAS_CONFIG, PORTS_CONFIG } from './config.js'
 import type { ScreenshotConfig } from './config.ts'
 import { getScreenshotsInChunk } from './lib.js'
 import { asyncPool, chunk, renderBar } from './utils.js'
@@ -33,7 +33,8 @@ const getScreenshots = async (data: ScreenshotConfig) => {
 
 const getAllScreenshots = async () => {
   // getScreenshots(PORTS_CONFIG);
-  getScreenshots(EEZ_AREAS_CONFIG)
+  // getScreenshots(EEZ_AREAS_CONFIG)
+  getScreenshots(INFRASTRUCTURE_AREAS_CONFIG)
 }
 
 getAllScreenshots()
