@@ -2,6 +2,31 @@
 
 A Node.js tool that automatically generates screenshots of Global Fishing Watch (GFW) maps using Puppeteer.
 
+## Prerequisites
+
+This project requires **Node.js version 24** or higher.
+
+### Using nvm (Node Version Manager)
+
+If you have nvm installed, the project will automatically switch to the correct Node.js version:
+
+```bash
+# The .nvmrc file will automatically use Node.js 24
+nvm use
+```
+
+If you don't have Node.js 24 installed via nvm:
+
+```bash
+# Install Node.js 24
+nvm install 24
+nvm use 24
+```
+
+### Manual Installation
+
+If you're not using nvm, make sure you have Node.js 24+ installed on your system.
+
 ## Installation
 
 1. Clone this repository
