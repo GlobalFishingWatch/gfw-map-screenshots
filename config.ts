@@ -9,6 +9,6 @@ export const PORTS_CONFIG = {
 
 export const EEZ_AREAS_CONFIG = {
   name: 'eezs',
-  url: 'https://fishing-map.globalfishingwatch.org/map/fishing-activity/default-public/report/public-eez-areas/{{id}}?dvIn[0][id]=basemap&dvIn[0][cfg][basemap]=satellite&dvIn[1][id]=context-layer-eez&dvIn[1][cfg][vis]=true&longitude=-31.92999904&latitude=-57.20959543&zoom=3.81852454',
+  url: 'https://fishing-map.globalfishingwatch.org/map/fishing-activity/default-public/report/public-eez-areas/{{id}}?dvIn[0][id]=context-layer-graticules&dvIn[0][cfg][vis]=false&dvIn[1][id]=basemap&dvIn[1][cfg][basemap]=satellite&dvIn[2][id]=context-layer-eez&dvIn[2][cfg][vis]=true&longitude=-31.92999904&latitude=-57.20959543&zoom=4.51060777&lTD=&fTD=&vDi=public-global-vessel-identity%3Av3.0&vIs=registryInfo&vAm=type&vS=activity&vA=eez&vR=encounters&includeRelatedIdentities=true',
   ids: eezs.flatMap((eez) => eez.properties.area || []),
 }
