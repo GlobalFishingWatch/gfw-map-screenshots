@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@globalfishingwatch/ocean-areas": "^2.0.3",
     "puppeteer": "^24.14.0"
   },
   "devDependencies": {
